@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Lesson3Hard {
     public static int evenFibonacci(int x){
-        // TODO liida kokku kõik paaris fibonacci arvud kuni numbrini x
+        // TODO liida kokku kõik paaris fibonacci arvud kuni numbrini x (st kuni väärtuseni)
         return 0;
     }
 

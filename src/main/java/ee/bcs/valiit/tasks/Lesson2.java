@@ -18,14 +18,14 @@ public class Lesson2 {
     // TODO loe sisse konsoolist 10 täisarvu
     // TODO trüki arvud välja vastupidises järiekorras
     public static void exercise1() {
-        int[] list = new int[10];
-        Scanner scanner = new Scanner(System.in);
+        int[] arrayList = new int[10];
+        Scanner scannerInput = new Scanner(System.in);
         for(int i = 0; i < 10; i++){
             System.out.println("Sisesta nr: ");
-            list[i] = scanner.nextInt();
+            arrayList[i] = scannerInput.nextInt();
         }
         for (int i=9; i>=0; i--){
-            System.out.print(list[i] + " ");
+            System.out.print(arrayList[i] + " ");
         }
     }
 
