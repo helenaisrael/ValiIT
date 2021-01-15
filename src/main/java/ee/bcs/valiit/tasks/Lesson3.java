@@ -17,8 +17,8 @@ public class Lesson3 {
         */
 
         int[] newArray = new int[]{5, -6, 9, 12, 7};
-        //System.out.println("Algne massiiv: " + Arrays.toString(newArray));
-        //System.out.println("Sortimisharjutuse vastus " + Arrays.toString(sort(newArray)));
+        System.out.println("Algne massiiv: " + Arrays.toString(newArray));
+        System.out.println("Sortimisharjutuse vastus " + Arrays.toString(sort(newArray)));
         System.out.println("Sortimisharjutuse vastus " + Arrays.toString(sortNew(newArray)));
         System.out.println("Sortimisharjutuse vastus " + Arrays.toString(sort2(newArray)));
         System.out.println();
@@ -89,7 +89,6 @@ public class Lesson3 {
         int[] temp = b;
         for (int i = 0; i < b.length - 1; i++) { // leian
             int min = b[getMin(b, i)];
-            System.out.println(min);
             temp[i] = min;
         }
         return temp;

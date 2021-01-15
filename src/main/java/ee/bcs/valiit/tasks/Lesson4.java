@@ -35,6 +35,8 @@ public class Lesson4 {
             // This has to remove specified amount from fromAccount and add it to toAccount
             // Your application needs to check that toAccount is positive
             // And from account has enough money to do that transaction
+            // TODO lisaülesanne - valideeri sisend
+            // Nt kui sisend on EEE123, siis
             else {
                 System.out.println("Unknown command");
             }
