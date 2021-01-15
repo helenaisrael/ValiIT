@@ -24,6 +24,7 @@ public class Lesson3 {
         System.out.println();
 
         System.out.println(reverseString("Pastöriseeritud piim"));
+        System.out.println(reverseString2("Helena testib"));
         System.out.println();
 
         System.out.println(isPrime(8)); // nt 4, 6, 8, 9 ei ole primaararvud
@@ -124,11 +125,19 @@ public class Lesson3 {
 
     public static String reverseString(String a) {
         // TODO tagasta string tagurpidi
-        String reverse = "";
+        String reverse = ""; // teen string muutuja, millel pole sisu (0-pikkusega tekst), kuhu hakkan lisama tähti
+        for (int i = a.length() - 1; i >= 0; i--) { // kontr. stringi pikkus-1, kas on suurem kui 0
+            reverse = reverse + a.charAt(i); // lisab stringi 1. tähe lõpust, seejärel hüppab tagasi for'i ja kontr. sama
+        } // ... kuni kõik tähed on tagurpidises jrk-s lisatud stringi
+        return reverse; //tagastab reverse nimelise stringi
+    }
+    public static String reverseString2(String a) { // Siimu lahendus, kasut .substringi funkts
+        // TODO tagasta string tagurpidi
+        String result = "";
         for (int i = a.length() - 1; i >= 0; i--) {
-            reverse = reverse + a.charAt(i);
+            result += a.substring(i, i + 1);
         }
-        return reverse;
+        return result;
     }
 
     public static boolean isPrime(int x) {

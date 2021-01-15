@@ -5,12 +5,11 @@ import java.util.*;
 public class Lesson2 {
 
     public static void main(String[] args) {
-       // exercise1(); // toimib! lihtsalt tüütu sisestada, sp peidetud
+       exercise1(); // toimib! lihtsalt tüütu sisestada, sp peidetud
        exercise2(5);
-       exercise3(5, 5);
+       exercise3(4, 4);
        exercise4(6);
        exercise5(3,1);
-
     }
 
 
@@ -30,7 +29,6 @@ public class Lesson2 {
     }
 
 
-
     // TODO prindi välja x esimest paaris arvu
     // Näide:
     // Sisend 5
@@ -46,7 +44,6 @@ public class Lesson2 {
             num++;
         }
     }
-
 
 
     // TODO trüki välja korrutustabel mis on x ühikut lai ja y ühikut kõrge
@@ -80,12 +77,12 @@ public class Lesson2 {
     }
 
 
-
     // TODO
     // Fibonacci jada on fib(n) = fib(n-1) + fib(n-2);
     // 0, 1, 1, 2, 3, 5, 8, 13, 21
     // Tagasta fibonacci jada n element
     public static int exercise4(int n) {
+
         if (n == 0) {
             return 0;
         } else if (n == 1) {
@@ -101,7 +98,6 @@ public class Lesson2 {
             return b;
         }
     }
-
 
 
     public static String exercise5(int x, int y) {
