@@ -6,14 +6,18 @@ import java.util.Scanner;
 
 public class Lesson4 {
     // Store account nr as a key and account balance as value
-    HashMap<String, BigDecimal> accountBalanceMap = new HashMap<>();
+    static HashMap<String, BigDecimal> accountBalanceMap = new HashMap<>();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         while (true){
-            String line = scanner.nextLine();
-            if (line.equalsIgnoreCase("exit")){
+            System.out.println("Please enter command: ");
+            String command = scanner.nextLine();
+            String[] commandParts = command.split(" "); // createAccount EE123x
+            if (command.equalsIgnoreCase("exit")){
                 break;
+            } else if(commandParts[0].equalsIgnoreCase("createAccount")){
+                accountBalanceMap.put(commandParts[1], new BigDecimal("0"));
             }
             // TODO 1
             // Add command: "createAccount ${accountNr}"
