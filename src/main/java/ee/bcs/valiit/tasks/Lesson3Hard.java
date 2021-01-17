@@ -1,13 +1,15 @@
 package ee.bcs.valiit.tasks;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Lesson3Hard {
     public static void main(String[] args) {
         System.out.println("Suurim paarisarv selles fibonacci jadas on: " + evenFibonacci(8));
         System.out.println();
 
-        System.out.println();
+        System.out.println(morseCode("SOS help"));
+        System.out.println(morseCode("Helena Israel"));
     }
 
     public static int evenFibonacci(int x){
@@ -23,7 +25,7 @@ public class Lesson3Hard {
             int b = 1; // eelmine väärtus
             while (b <= x) { // tee ümber while tsükliks!
                 if (b % 2 == 0) { // kui b on paarisarv
-                    sum = sum + b;
+                    sum = sum + b; // sama mis sum += b;
                 }
                 int tmp = a; // ajutine väärtus, et meeles pidada a eelmist väärtust
                 a = b;
@@ -39,8 +41,16 @@ public class Lesson3Hard {
         // ja kasutaja peab saama uuesti arvata
         // numbri ära arvamise korral peab programm välja trükkima, mitu katset läks numbri ära arvamiseks
         Random random = new Random();
-        int i = random.nextInt(100);
-        System.out.println(i);
+        Scanner scanner = new Scanner(System.in);
+        int randomNumber = random.nextInt(100); // NB: oluline def ära ENNE tsüklit!
+        int count = 0; // NB: oluline def ära ENNE tsüklit
+
+        System.out.println("Arvuti valis ühe numbri vahemikus 1-100. Arva see ära!");
+        while (true) { // infinite loop, sest ei tea, mitu x kasutaja hakkab arvama
+            count++;
+            System.out.println("");
+            int guess = scanner.nextInt();
+        }
     }
 
     public static String morseCode(String text){
