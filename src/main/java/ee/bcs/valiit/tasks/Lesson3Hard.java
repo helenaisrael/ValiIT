@@ -10,8 +10,8 @@ public class Lesson3Hard {
 //        System.out.println("Suurim paarisarv selles fibonacci jadas on: " + evenFibonacci(8));
 //        System.out.println();
 //
-//        randomGame();
-//        System.out.println();
+        randomGame();
+        System.out.println();
 
         System.out.println(morseCode("vali-it"));
         System.out.println(morseCode("sos help"));
@@ -49,10 +49,10 @@ public class Lesson3Hard {
         // ja kasutaja peab saama uuesti arvata
         // numbri ära arvamise korral peab programm välja trükkima, mitu katset läks numbri ära arvamiseks
         Scanner scanner = new Scanner(System.in);
-        Random random = new Random();
-        int count = 0; // NB: oluline def ära ENNE tsüklit
+        Random random = new Random(); // loon random objekti, et oleks võimalik välja kutsuda random number
         int randomNumber = random.nextInt(100); // NB: oluline def ära ENNE tsüklit!!!
         System.out.println("Arvuti valis ühe numbri vahemikus 1-100. Arva see ära! Sul on 10 võimalust");
+        int count = 0; // NB: oluline def ära ENNE tsüklit
 
         while (true) { // infinite loop, sest ei tea, mitu x kasutaja hakkab arvama
             count++;
