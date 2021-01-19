@@ -22,6 +22,8 @@ public class Lesson4 {
             // TODO 1
             // Add command: "createAccount ${accountNr}"
             // this has to store accountNr with 0 balance
+
+
             // TODO 2
             // Add command: "getBalance ${accountNr}"
             // this has to display account balance of specific acount

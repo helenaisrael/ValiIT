@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 public class Lesson3Hard {
     public static void main(String[] args) {
-//        System.out.println("Suurim paarisarv selles fibonacci jadas on: " + evenFibonacci(8));
-//        System.out.println();
-//
+        System.out.println("Suurim paarisarv selles fibonacci jadas on: " + evenFibonacci(8));
+        System.out.println();
+
         randomGame();
         System.out.println();
 

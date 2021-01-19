@@ -11,9 +11,8 @@ public class Lesson1MathUtil {
     public static void main(String[] args) {
         System.out.println(min(5,7,7));
         System.out.println(max(915,9,2));
-        //System.out.println(abs(a));
-        //System.out.println(isEven(a));
-
+        System.out.println(abs(90));
+        System.out.println(isEven(30));
     }
 
     // TODO tagasta a ja b väikseim väärtus
@@ -21,7 +20,7 @@ public class Lesson1MathUtil {
         if (a <= b) {
             return a;
         } else {
-            return b; // reaalselt tagastab
+            return b; // see, mis reaalselt tagastab
         }
     }
 
@@ -67,9 +66,7 @@ public class Lesson1MathUtil {
         }
     }
 
-
-
-    // TODO tagasta kolmest arvust kõige suurem >>> Vt see üle!!!
+    // TODO tagasta kolmest arvust kõige suurem
     public static int max(int a, int b, int c) {
         return max(max(a, b), c);
 

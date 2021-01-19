@@ -1,20 +1,20 @@
 package ee.bcs.valiit.tasks;
 
-import java.lang.reflect.Array;
+import java.sql.SQLOutput;
 import java.util.Arrays;
 
 public class Lesson3 {
     public static void main(String[] args) {
-        /*
+
         int[] array = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         System.out.println(Arrays.toString(array));
         System.out.println(sum(array));
         System.out.println("");
+        System.out.println(sumSiim(array)); // sisestan massiivi, mitte x
 
         int x = 5;
         System.out.println("Faktoriaal = " + factorial(x));
         System.out.println("");
-        */
 
         int[] newArray = new int[]{5, -6, 9, 12, 7};
         System.out.println("Algne massiiv: " + Arrays.toString(newArray));
@@ -40,9 +40,18 @@ public class Lesson3 {
             System.out.println("i väärtus: " + i);
             System.out.println("sumNum väärtus: " + sumNum);
             System.out.println("Toimub tehe: sumNum = " + sumNum + " + " + x[i]);
+            System.out.println("");
             sumNum += x[i];
         }
         return sumNum;
+    }
+
+    public static int sumSiim(int[] x) {
+        int sum = 0;
+        for (int i : x) { // for each tsükkel, indeksit ei saa, antakse järjest kõik elemendid
+            sum += i;
+        }
+        return sum;
     }
 
     public static int factorial(int x) {
@@ -56,13 +65,15 @@ public class Lesson3 {
             fact = fact * i; // fact *= i;
         }
         return fact;
+    }
 
-        // Kui teha faktoriaal tagurpidi (5*4*3*2*1)
-        /*for (int i = x; i >= 1; i--) {
+    // Faktoriaal tagurpidi (5*4*3*2*1)
+    public static int factorial1(int x) {
+        int fact = 1;
+        for (int i = x; i >= 1; i--) {
             fact = fact * i;
         }
         return fact;
-        */
     }
 
 
@@ -94,7 +105,6 @@ public class Lesson3 {
         }
         return temp;
     }
-
     private static int getMin(int[] b, int i) { // see funkts leiab ainult min indexi ehk positsiooni
         int min = i;
         for (int j = i + 1; j < b.length; j++) {

@@ -5,7 +5,7 @@ import java.util.*;
 public class Lesson2 {
 
     public static void main(String[] args) {
-       exercise1(); // toimib! lihtsalt tüütu sisestada, sp peidetud
+       exercise1();
        exercise2(5);
        exercise3(4, 4);
        exercise4(6);
@@ -27,6 +27,19 @@ public class Lesson2 {
             System.out.print(arrayList[i] + " ");
         }
     }
+
+   public static int[] exercise1Web(int[] array) {
+        int[] resultArray = new int[array.length];
+        for (int i = array.length-1; i >= 0; i--) {
+            resultArray[array.length-1-i] = array[i]; // siin real vahetab kohad ära jadades
+//            resultArray[0] = array[i]; i = 9; array.length = 9
+//            resultArray[1] = array[i]; i = 8; array.length = 9
+//            resultArray[2] = array[i]; i = 7; array.length = 9
+//            resultArray[3] = array[i]; i = 6; array.length = 9
+//            jne...
+        }
+        return resultArray;
+   }
 
 
     // TODO prindi välja x esimest paaris arvu
@@ -76,6 +89,8 @@ public class Lesson2 {
         }
     }
 
+    // tagastada kas Stringina või 2-mõõtmelise array'na
+
 
     // TODO
     // Fibonacci jada on fib(n) = fib(n-1) + fib(n-2);
@@ -103,7 +118,7 @@ public class Lesson2 {
     public static String exercise5(int x, int y) {
         // https://onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=36
         // TODO 1 (tee alamfunktsioon) mis leiab 3n+1 sequenci pikkuse
-        // kui on paaris / 2 kui on paaritu *3+1
+        // kui on paaris, siis /2; kui on paaritu, siis *3+1
         // TODO 2 tee tsükkel mis leiab i -> j kõige suurema tsükli pikkuse
 
         int maxLength = 0; // suurima tsükli pikkuse alguspunkt
