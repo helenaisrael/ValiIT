@@ -20,4 +20,5 @@ public class TestController {
     public String getHelloWorld(@PathVariable("name") String userName, @RequestParam("name") String lastName) {
         return "Hello, " + userName + " " + lastName + "!";
     }
+
 }

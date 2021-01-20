@@ -23,6 +23,7 @@ public class Lesson3Hard_Controller {
         return Lesson3Hard.morseCode(textVariable);
     }
 
+    // mängus ikka bugi sees, sest nüüd enam ei vali uut nr järgm mängus, vaid kogu aeg on 5!
 
     Random random = new Random();
     int randomNumber = random.nextInt(100);
