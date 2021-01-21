@@ -33,5 +33,6 @@ public class BankController {
     // http://localhost:8080/bank/transferMoney?fromAccount=EE123&toAccount=EE124&amount=12
     public void transferMoney(){
 
+
     }
 }
