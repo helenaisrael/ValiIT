@@ -30,7 +30,6 @@ public class Lesson4 {
             // TODO 1
             // Add command: "createAccount ${accountNr}"
             // this has to store accountNr with 0 balance
-
             else if (commandParts[0].equalsIgnoreCase("createAccount")) { // kui command osa indexil 0 (käsklus), siis
                 accountBalanceMap.put(commandParts[1], new BigDecimal("0")); // paneb hashmapi command index1 (kontonr) key'ks & BigDecimal valueks 0
             }
@@ -38,7 +37,6 @@ public class Lesson4 {
             // TODO 2
             // Add command: "getBalance ${accountNr}"
             // this has to display account balance of specific account
-
             else if (commandParts[0].equalsIgnoreCase("getBalance")) {
                 System.out.println(accountBalanceMap.get(commandParts[1]));
             }
@@ -47,14 +45,14 @@ public class Lesson4 {
             // Add command: "depositMoney ${accountNr} ${amount}
             // this has to add specified amount of money to account
             // You have to check that amount is positive number
-
             else if (commandParts[0].equalsIgnoreCase("depositMoney")) {
                 if (Integer.parseInt(commandParts[2]) > 0) { // muudan commandPart[2] numbri Stringist int'iks ja kontrollin, et oleks >0
                     BigDecimal depositAmount = new BigDecimal(commandParts[2]); // teen ajutiselt uue muutuja, võtab commandPart2 väärtuse, nt 10
                     BigDecimal accountBalance = accountBalanceMap.get(commandParts[1]); // võtan olemasoleva konto väärtuse
                     BigDecimal newBalance = accountBalance.add(depositAmount); // liidan kokku konto vana seisu + uue sissemakse
                     accountBalanceMap.put(commandParts[1], newBalance);
-                } else {
+                }
+                else {
                     System.out.println("The entered amount is invalid.");
                 }
             }
@@ -64,18 +62,19 @@ public class Lesson4 {
             // This has to remove specified amount of money from account
             // You have to check that amount is positive number
             // You may not allow this transaction if account balance would become negative
-
             else if (commandParts[0].equalsIgnoreCase("withdrawMoney")) {
                 if (Integer.parseInt(commandParts[2]) > 0) { // muudan commandPart[2] numbri Stringist int'iks ja kontrollin, et oleks >0
                     BigDecimal withdrawAmount = new BigDecimal(commandParts[2]); // teen ajutiselt uue muutuja, võtab commandPart2 väärtuse, nt 10
                     BigDecimal accountBalance = accountBalanceMap.get(commandParts[1]); // võtan olemasoleva konto väärtuse
                     BigDecimal newBalance = accountBalance.subtract(withdrawAmount); // lahutan kontojäägist väljavõetava numbri
                     if (newBalance.intValue() > 0) { // intValue muudab BigDecimali intiks, et saaksin võrdluse teha
-                        accountBalanceMap.put(commandParts[1], withdrawAmount);
-                    } else {
+                        accountBalanceMap.put(commandParts[1], newBalance);
+                    }
+                    else {
                         System.out.println("There is not enough money on this account.");
                     }
-                } else {
+                }
+                else {
                     System.out.println("The entered amount is invalid.");
                 }
             }
@@ -85,24 +84,27 @@ public class Lesson4 {
             // This has to remove specified amount from fromAccount and add it to toAccount
             // Your application needs to check that toAccount is positive
             // And from account has enough money to do that transaction
-
             else if (commandParts[0].equalsIgnoreCase("transferMoney")) {
-                if (Integer.parseInt(commandParts[2]) > 0) { // muudan commandPart[2] numbri Stringist int'iks ja kontrollin, et oleks >0
-                    BigDecimal transferAmount = new BigDecimal(commandParts[3]); // teen ajutiselt uue muutuja, võtab commandPart2 väärtuse, nt 10
-                    BigDecimal accountBalance = accountBalanceMap.get(commandParts[1]); // võtan olemasoleva konto väärtuse
-                    BigDecimal newBalance = accountBalance.subtract(transferAmount); // lahutan kontojäägist välja võetava numbri
-
-                    if (newBalance.intValue() > 0) { // intValue muudab BigDecimali intiks, et saaksin võrdluse teha
-                        accountBalanceMap.put(commandParts[1], transferAmount);
-                    } else {
+                if (Integer.parseInt(commandParts[3]) > 0) { // muudan commandPart[2] numbri Stringist int'iks ja kontrollin, et oleks >0
+                    BigDecimal transferAmount = new BigDecimal(commandParts[3]); // teen ajutiselt uue muutuja, võtab commandPart3 väärtuse, nt 10
+                    BigDecimal accountBalance1 = accountBalanceMap.get(commandParts[1]); // võtan fromAccount konto väärtuse
+                    BigDecimal accountBalance2 = accountBalanceMap.get(commandParts[2]); // võtan toAccount konto väärtuse
+                    BigDecimal newBalance1 = accountBalance1.subtract(transferAmount); // lahutan fromAccount kontojäägist üle kantava numbri
+                    BigDecimal newBalance2 = accountBalance2.add(transferAmount); // liidan ülekantava summa toAccount kontole
+                    if (newBalance1.intValue() > 0) { // intValue muudab BigDecimali intiks, et saaksin võrdluse teha
+                        accountBalanceMap.put(commandParts[1], newBalance1); // annan lõppväärtuse fromAccount kontole
+                        accountBalanceMap.put(commandParts[2], newBalance2); // annan lõppväärtuse toAccount kontole
+                    }
+                    else {
                         System.out.println("There is currently not enough money on " + commandParts[1] + " account for this transaction.");
                     }
-                } else {
+                }
+                else {
                     System.out.println("The entered amount is invalid.");
                 }
             }
 
-            // TODO lisaülesanne - valideeri sisend
+            // TODO lisaülesanne - valideeri sisend > mis tähendab? :)
             // Nt kui sisend on EEE123, siis
 
             else {
