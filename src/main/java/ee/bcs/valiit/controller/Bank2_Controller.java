@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RequestMapping("bank2")
 @RestController
-public class Bank_Controller {
+public class Bank2_Controller {
 
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
