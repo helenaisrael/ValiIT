@@ -31,14 +31,14 @@ public class Lesson4 {
             // Add command: "createAccount ${accountNr}"
             // this has to store accountNr with 0 balance
             else if (commandParts[0].equalsIgnoreCase("createAccount")) { // kui command osa indexil 0 (käsklus), siis
-                accountBalanceMap.put(commandParts[1], new BigDecimal("0")); // paneb hashmapi command index1 (kontonr) key'ks & BigDecimal valueks 0
+                System.out.println("A new account " + accountBalanceMap.put(commandParts[1], new BigDecimal("0")) + "has been created"); // paneb hashmapi command index1 (kontonr) key'ks & BigDecimal valueks 0
             }
 
             // TODO 2
             // Add command: "getBalance ${accountNr}"
             // this has to display account balance of specific account
             else if (commandParts[0].equalsIgnoreCase("getBalance")) {
-                System.out.println(accountBalanceMap.get(commandParts[1]));
+                System.out.println("Your account balance is: " + accountBalanceMap.get(commandParts[1]));
             }
 
             // TODO 3
@@ -69,6 +69,7 @@ public class Lesson4 {
                     BigDecimal newBalance = accountBalance.subtract(withdrawAmount); // lahutan kontojäägist väljavõetava numbri
                     if (newBalance.intValue() > 0) { // intValue muudab BigDecimali intiks, et saaksin võrdluse teha
                         accountBalanceMap.put(commandParts[1], newBalance);
+                        System.out.println("The requested amount " + withdrawAmount + "$ has been withdrawn from your account.");
                     }
                     else {
                         System.out.println("There is not enough money on this account.");

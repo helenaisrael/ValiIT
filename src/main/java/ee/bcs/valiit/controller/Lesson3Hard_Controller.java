@@ -17,33 +17,35 @@ public class Lesson3Hard_Controller {
         return Lesson3Hard.evenFibonacci(xVariable);
     }
 
+
     // http://localhost:8080/Lesson3Hard/morse/vali-it
     @GetMapping("morse/{text}")
     public String morseCode(@PathVariable("text") String textVariable) {
         return Lesson3Hard.morseCode(textVariable);
     }
 
-    // mängus ikka bugi sees, sest nüüd enam ei vali uut nr järgm mängus, vaid kogu aeg on 5!
 
     Random random = new Random();
     int randomNumber = random.nextInt(100);
-    int count = 1;
-    // http://localhost:8080/Lesson3Hard/randomGame/73 // arvamiseks vaja vahetada nr aadressi lõpus
+    int count = 0;
+    // http://localhost:8080/Lesson3Hard/randomGame/73 // >> arvamiseks vaja muuta nr URLi lõpus
     @GetMapping("randomGame/{guess}")
     public String randomGame(@PathVariable("guess") int guessVariable) {
+        count++;
         if ((guessVariable == randomNumber) && (count <= 10)) {
             int winCount = count; // salvestab count väärtuse, mida kuvada vastuse stringis
-            count = 1; // äraarvamise puhul nullib counteri
+            count = 0; // äraarvamise puhul nullib counteri
+            randomNumber = random.nextInt(100);
             return "Tubli, arvasid ära " + winCount + ". korraga!";
         } else if (count >= 10) {
-            count = 1;
-            return "Ei arvanud ära, see oli viimane katse. Tegelik number oli " + randomNumber;
+            count = 0;
+            int oldRandomNumber = randomNumber;
+            randomNumber = random.nextInt(100);
+            return "Ei arvanud ära, see oli viimane katse. Tegelik number oli " + oldRandomNumber;
         } else if (guessVariable > randomNumber) {
-            count ++;
-            return "Proovi uuesti, number on väiksem " + guessVariable + "-st";
+            return "See oli " + count + ". katse. \n Proovi uuesti, number on väiksem " + guessVariable + "-st";
         } else {
-            count ++;
-            return "Proovi uuesti, number on suurem " + guessVariable + "-st";
+            return "See oli " + count + ". katse. \n Proovi uuesti, number on suurem " + guessVariable + "-st";
         }
     }
 }

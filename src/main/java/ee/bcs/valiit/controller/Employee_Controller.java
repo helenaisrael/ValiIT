@@ -1,20 +1,27 @@
 package ee.bcs.valiit.controller;
 
 import ee.bcs.valiit.tasks.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping
 @RestController
 public class Employee_Controller {
 
+    @Autowired
+    private NamedParameterJdbcTemplate jdbcTemplate;
+
     // DTO harjutuse jaoks loon listi
     private List<Employee> employeesList = new ArrayList<>();
 
 
-    // http://localhost:8080/testEmployee?id=001&name=Mari_Maasikas&age=36&address=Tallinn
+    // http://localhost:8080/testEmployee?id=005&name=Mari_Maasikas&age=36&address=Tallinn
     @GetMapping("testEmployee")
     public Employee newEmployee1(@RequestParam("id") int id,
                                  @RequestParam("name") String name,
@@ -22,10 +29,18 @@ public class Employee_Controller {
                                  @RequestParam("address") String address
     ) {
         Employee newEmployee1 = new Employee();
-        newEmployee1.setId(001);
+        newEmployee1.setId(005);
         newEmployee1.setName("Mari Maasikas");
         newEmployee1.setAge(36);
         newEmployee1.setAddress("Veeriku 10, Tallinn");
+
+        String sql = "INSERT INTO employee (id, name, age, address) VALUES (:idParameter, :nameParameter, :ageParameter, :addressParameter)";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("idParameter", newEmployee1.getId());
+        paramMap.put("nameParameter", newEmployee1.getName());
+        paramMap.put("ageParameter", newEmployee1.getAge());
+        paramMap.put("addressParameter", newEmployee1.getAddress());
+        jdbcTemplate.update(sql, paramMap);
         return newEmployee1;
     }
 
@@ -37,7 +52,7 @@ public class Employee_Controller {
     }
 
 
-// NBNBNB: kui on vaja @RequestBody, siis peab Postmanis olema alati raw + JSON (ja all kastis ka JSONi kujul andmed!
+// NBNBNB: kui on vaja @RequestBody (turvalisem!), siis peab Postmanis olema alati raw + JSON (ja all kastis ka JSONi kujul andmed!
 // NBNB: ühtegi @RequestParam (ehk peale ? ei tohi olla andmeid)
 
     // Exercise REST endpoint
