@@ -1,12 +1,9 @@
 package ee.bcs.valiit.tasks;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class Bank3Service {
@@ -23,18 +20,18 @@ public class Bank3Service {
     }
 
     public void depositMoney(String accountNr, BigDecimal amount) {
-        BigDecimal balance = bank3Repository.depositMoney(accountNr, amount);
+        BigDecimal balance = bank3Repository.accountBalance(accountNr);
         BigDecimal newBalance = balance.add(amount);
-        bank3Repository.updateBalance(accountNr, newBalance);
+        bank3Repository.transaction(accountNr, newBalance);
     }
 
     public void withdrawMoney(String accountNr, BigDecimal amount) {
-        BigDecimal balance = bank3Repository.withdrawMoney(accountNr, amount);
+        BigDecimal balance = bank3Repository.accountBalance(accountNr);
         BigDecimal newBalance = balance.subtract(amount);
         if (newBalance.compareTo(BigDecimal.ZERO) < 0) {
             throw new RuntimeException("Not enough money");
         }
-        bank3Repository.updateBalance(accountNr, newBalance);
+        bank3Repository.transaction(accountNr, newBalance);
     }
 
     public void transferMoney(String fromAccount, String toAccount, BigDecimal amount) {
@@ -43,11 +40,12 @@ public class Bank3Service {
         if (newFromAccountBalance.compareTo(BigDecimal.ZERO) < 0) {
             throw new RuntimeException("Not enough money");
         }
-        bank3Repository.transferMoney(fromAccount, amount);
-        bank3Repository.transferMoney2(fromAccount, newFromAccountBalance);
+        bank3Repository.accountBalance(fromAccount); // transferMoney1
+        bank3Repository.transaction(fromAccount, newFromAccountBalance); // transferMoney2
+
         BigDecimal toAccountBalance = bank3Repository.accountBalance(toAccount);
         BigDecimal newToAccountBalance = toAccountBalance.add(amount);
-        bank3Repository.transferMoney3(toAccount, amount);
-        bank3Repository.transferMoney4(toAccount, newToAccountBalance);
+        bank3Repository.accountBalance(toAccount); // transferMoney3
+        bank3Repository.transaction(toAccount, newToAccountBalance); // transferMoney4
     }
 }
