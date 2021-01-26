@@ -4,12 +4,37 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="1" author="Siim">
-        <createTable tableName="author">
+     <changeSet id="2021-01-26 v.1" author="Helena">
+        <createTable tableName="accounts">
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="name" type="text"/>
+            <column name="account_nr" type="text">
+                <constraints unique="true"/>
+            </column>
+            <column name="customer_id" type="int"/>
+            <column name="account_balance" type="numeric(10,2)"/>
+        </createTable>
+
+        <createTable tableName="customers">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="first_name" type="text"/>
+            <column name="last_name" type="text"/>
+            <column name="birth_date" type="text"/>
+            <column name="phone" type="text"/>
+            <column name="email" type="text"/>
+        </createTable>
+
+        <createTable tableName="transactions">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="cash_deposited" type="numeric(10,2)"/>
+            <column name="cash_withdrawn" type="numeric(10,2)"/>
+            <column name="transactions_incomes" type="numeric(10,2)"/>
+            <column name="transactions_outgoings" type="numeric(10,2)"/>
         </createTable>
 
         <createTable tableName="book">
@@ -17,9 +42,24 @@
                 <constraints primaryKey="true"/>
             </column>
             <column name="name" type="text"/>
-            <column name="author_id" type="int">
-                <constraints foreignKeyName="fk_book_author" references="author(id)"/>
+            <column name="author_id" type="int"/>
+        </createTable>
+
+        <createTable tableName="author">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
             </column>
+            <column name="name" type="text"/>
+        </createTable>
+
+        <createTable tableName="employee">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="text"/>
+            <column name="age" type="int"/>
+            <column name="address" type="text"/>
         </createTable>
     </changeSet>
+
 </databaseChangeLog>

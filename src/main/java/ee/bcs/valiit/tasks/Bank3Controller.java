@@ -15,11 +15,11 @@ public class Bank3Controller {
     @Autowired
     private Bank3Service bank3Service;
 
-    // http://localhost:8080/bank3/createAccount?accountNr=EE001
-    // http://localhost:8080/bank3/createAccount?accountNr=EE002
+    // http://localhost:8080/bank3/createAccount?accountNr=EE001&owner=1
+    // http://localhost:8080/bank3/createAccount?accountNr=EE002&owner=2
     @GetMapping("createAccount")
-    public void createAccount(@RequestParam("accountNr") String accountNr) {
-        bank3Service.createAccount(accountNr);
+    public void createAccount(@RequestParam("accountNr") String accountNr, @RequestParam("owner") Integer owner) {
+        bank3Service.createAccount(accountNr, owner);
     }
 
     // http://localhost:8080/bank3/accountBalance?accountNr=EE001
@@ -48,5 +48,15 @@ public class Bank3Controller {
                               @RequestParam("toAccount") String toAccount,
                               @RequestParam("amount") BigDecimal amount) {
         bank3Service.transferMoney(fromAccount, toAccount, amount);
+    }
+
+    // http://localhost:8080/bank3/createCustomer?firstName=Ago&lastName=Alev&birthDate=1990&phone=+37265645456&email=test@mail.ee
+    @GetMapping("createCustomer")
+    public void createNewCustomer(@RequestParam("firstName") String firstName,
+                                  @RequestParam("lastName") String lastName,
+                                  @RequestParam("birthDate") String birthDate,
+                                  @RequestParam("phone") String phone,
+                                  @RequestParam("email") String email) {
+        bank3Service.createCustomer(firstName, lastName, birthDate, phone, email);
     }
 }

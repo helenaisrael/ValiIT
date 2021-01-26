@@ -2,6 +2,7 @@ package ee.bcs.valiit.tasks;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 
@@ -11,8 +12,8 @@ public class Bank3Service {
     @Autowired
     private Bank3Repository bank3Repository;
 
-    public void createAccount(String accountNr) {
-        bank3Repository.createAccount(accountNr);
+    public void createAccount(String accountNr, Integer owner) {
+        bank3Repository.createAccount(accountNr, owner);
     }
 
     public BigDecimal accountBalance(String accountNr) {
@@ -47,5 +48,9 @@ public class Bank3Service {
         BigDecimal newToAccountBalance = toAccountBalance.add(amount);
         bank3Repository.accountBalance(toAccount); // transferMoney3
         bank3Repository.transaction(toAccount, newToAccountBalance); // transferMoney4
+    }
+
+    public void createCustomer(String firstName, String lastName, String birthDate, String phone, String email) {
+        bank3Repository.createCustomer(firstName, lastName, birthDate, phone, email);
     }
 }
