@@ -5,33 +5,42 @@ import java.util.*;
 public class Lesson2 {
 
     public static void main(String[] args) {
-       exercise1();
-       exercise2(5);
-       exercise3(4, 4);
-       exercise4(6);
-       exercise5(3,1);
+
+        int[] arrayList = new int[10];
+        Scanner scannerInput = new Scanner(System.in);
+        System.out.println("Sisesta 10 nr-it: ");
+        for (int i = 0; i < 10; i++) {
+            arrayList[i] = scannerInput.nextInt();
+        }
+
+        exercise1(arrayList);
+        exercise1Web(arrayList);
+        exercise2(5);
+        exercise3(4, 4);
+        exercise4(6);
+        exercise5(3, 1);
     }
 
 
     // TODO loo 10 elemendile täisarvude massiv
     // TODO loe sisse konsoolist 10 täisarvu
     // TODO trüki arvud välja vastupidises järiekorras
-    public static void exercise1() {
-        int[] arrayList = new int[10];
-        Scanner scannerInput = new Scanner(System.in);
-        for(int i = 0; i < 10; i++){
-            System.out.println("Sisesta nr: ");
-            arrayList[i] = scannerInput.nextInt();
+    public static int[] exercise1(int[] array) {
+        int[] arrayNew = new int[10];
+        int j = 0;
+        for (int i = 9; i >= 0; i--) {
+            System.out.print(array[i] + " ");
+            arrayNew[j] = array[i];
+            j++;
         }
-        for (int i=9; i>=0; i--){
-            System.out.print(arrayList[i] + " ");
-        }
+        System.out.println();
+        return arrayNew;
     }
 
-   public static int[] exercise1Web(int[] array) {
+    public static int[] exercise1Web(int[] array) {
         int[] resultArray = new int[array.length];
-        for (int i = array.length-1; i >= 0; i--) {
-            resultArray[array.length-1-i] = array[i]; // siin real vahetab kohad ära jadades
+        for (int i = array.length - 1; i >= 0; i--) {
+            resultArray[array.length - 1 - i] = array[i]; // siin real vahetab kohad ära jadades
 //            resultArray[0] = array[i]; i = 9; array.length = 9
 //            resultArray[1] = array[i]; i = 8; array.length = 9
 //            resultArray[2] = array[i]; i = 7; array.length = 9
@@ -39,23 +48,28 @@ public class Lesson2 {
 //            jne...
         }
         return resultArray;
-   }
+    }
 
 
     // TODO prindi välja x esimest paaris arvu
     // Näide:
     // Sisend 5
     // Väljund 2 4 6 8 10
-    public static void exercise2(int x) {
+    public static int[] exercise2(int x) {
         int even = 0;
         int num = 1;
-        while(even < x){
+        int[] array = new int[x];
+        int i = 0; // i on array's index
+        while (even < x) {
             if (num % 2 == 0) {
                 even++;
+                array[i] = num;
                 System.out.println(num);
+                i++; // iga kord, kui leiab paarisarvu. suurendab array indexit 1 võrra
             }
             num++;
         }
+        return array;
     }
 
 
@@ -131,16 +145,17 @@ public class Lesson2 {
         }
         return null;
     }
-        public static int seqLength(int n) { // funktsioon, mis leiab 3n + 1 jada pikkuse
-            int count = 1; // tsükli alguspunkt
-            while(n > 1){
-                count++; // liida 1
-                if(n % 2 == 0){
-                    n = n / 2; // kui n on paarisarv
-                } else {
-                    n = n * 3 + 1; // kui n on paaritu arv
-                }
+
+    public static int seqLength(int n) { // funktsioon, mis leiab 3n + 1 jada pikkuse
+        int count = 1; // tsükli alguspunkt
+        while (n > 1) {
+            count++; // liida 1
+            if (n % 2 == 0) {
+                n = n / 2; // kui n on paarisarv
+            } else {
+                n = n * 3 + 1; // kui n on paaritu arv
             }
-            return count;
         }
+        return count;
     }
+}

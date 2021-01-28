@@ -39,12 +39,12 @@ public class MathUtil_Controller {
     // http://localhost:8080/Lesson1MathUtil/min2/9/-1/100
     @GetMapping("min2/{a}/{b}/{c}")
     public int min(@PathVariable("a") int aVariable, @PathVariable("b") int bVariable, @PathVariable("c") int cVariable) {
-        return Lesson1MathUtil.min(aVariable, bVariable, cVariable);
+        return Lesson1MathUtil.min2(aVariable, bVariable, cVariable);
     }
 
     // http://localhost:8080/Lesson1MathUtil/max2?a=9&b=-1&c=100
     @GetMapping("max2")
     public int max(@RequestParam("a") int aVariable, @RequestParam("b") int bVariable, @RequestParam("c") int cVariable) {
-        return Lesson1MathUtil.max(aVariable, bVariable, cVariable);
+        return Lesson1MathUtil.max2(aVariable, bVariable, cVariable);
     }
 }

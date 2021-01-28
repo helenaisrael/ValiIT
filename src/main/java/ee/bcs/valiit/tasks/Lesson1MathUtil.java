@@ -9,10 +9,13 @@ public class Lesson1MathUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(min(5,7,7));
-        System.out.println(max(915,9,2));
+        System.out.println(min(3,5));
+        System.out.println(min(3,-5));
+        System.out.println(max(3,-5));
         System.out.println(abs(90));
         System.out.println(isEven(30));
+        System.out.println(min2(5,7,7));
+        System.out.println(max2(915,9,2));
     }
 
     // TODO tagasta a ja b väikseim väärtus
@@ -53,7 +56,7 @@ public class Lesson1MathUtil {
     }
 
     // TODO tagasta kolmest arvust kõige väiksem
-    public static int min(int a, int b, int c) {
+    public static int min2(int a, int b, int c) {
         //return min(min(a, b), c);
         // VÕI pikem ja potentsiaalselt riskantsem variant:
 
@@ -67,7 +70,7 @@ public class Lesson1MathUtil {
     }
 
     // TODO tagasta kolmest arvust kõige suurem
-    public static int max(int a, int b, int c) {
+    public static int max2(int a, int b, int c) {
         return max(max(a, b), c);
 
     }

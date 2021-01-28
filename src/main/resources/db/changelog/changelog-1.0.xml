@@ -4,17 +4,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-     <changeSet id="2021-01-26 v.1" author="Helena">
-        <createTable tableName="accounts">
-            <column name="id" type="int" autoIncrement="true">
-                <constraints primaryKey="true"/>
-            </column>
-            <column name="account_nr" type="text">
-                <constraints unique="true"/>
-            </column>
-            <column name="customer_id" type="int"/>
-            <column name="account_balance" type="numeric(10,2)"/>
-        </createTable>
+    <changeSet id="2021-01-26 v.1" author="Helena">
 
         <createTable tableName="customers">
             <column name="id" type="int" autoIncrement="true">
@@ -27,14 +17,34 @@
             <column name="email" type="text"/>
         </createTable>
 
+        <createTable tableName="accounts">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="account_nr" type="text">
+                <constraints unique="true"/>
+            </column>
+            <column name="customer_id" type="int">
+                <constraints foreignKeyName="fk_account_owner" references="customers(id)"/>
+            </column>
+            <column name="account_balance" type="numeric(10,2)"/>
+        </createTable>
+
         <createTable tableName="transactions">
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
+            <column name="account_id" type="int"/>
             <column name="cash_deposited" type="numeric(10,2)"/>
             <column name="cash_withdrawn" type="numeric(10,2)"/>
-            <column name="transactions_incomes" type="numeric(10,2)"/>
-            <column name="transactions_outgoings" type="numeric(10,2)"/>
+            <column name="transfers_in" type="numeric(10,2)"/>
+            <column name="from_account_id" type="int">
+                <constraints foreignKeyName="fk_from_account" references="accounts(id)"/>
+            </column>
+            <column name="transfers_out" type="numeric(10,2)"/>
+            <column name="to_account_id" type="int">
+                <constraints foreignKeyName="fk_to_account" references="accounts(id)"/>
+            </column>
         </createTable>
 
         <createTable tableName="book">
@@ -47,7 +57,7 @@
 
         <createTable tableName="author">
             <column name="id" type="int" autoIncrement="true">
-                <constraints primaryKey="true"/>
+                <constraints primaryKey="true" foreignKeyName="fk_book_author" references="author(id)"/>
             </column>
             <column name="name" type="text"/>
         </createTable>
