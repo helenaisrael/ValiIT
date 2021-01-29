@@ -35,9 +35,9 @@ public class Bank3Repository {
     }
 
     public void getAccountId(Integer accountId) {
-        String sql = "INSERT INTO transactions (from_account_id) VALUES (:accountId)";
+        String sql = "INSERT INTO transactions (account_id) VALUES (:accountId)";
         Map<String, Object> paramMap3 = new HashMap();
-        paramMap3.put("fromAccountId", accountId);
+        paramMap3.put("accountId", accountId);
         jdbcTemplate.update(sql, paramMap3);
     }
 
@@ -62,25 +62,33 @@ public class Bank3Repository {
 //        jdbcTemplate.update(sql2, paramMap3);
     }
 
-    public void accountHistory(Integer accountId, BigDecimal cashAmount) {
-
-    }
-
+//    public void accountHistory(Integer accountId, BigDecimal cashAmount) {
+//
+//    }
+//
 //    public void accountHistory(String accountNr, BigDecimal withdrawn, ) {
 //
 //    }
+
     public void accountHistory(BigDecimal deposited, BigDecimal withdrawn, BigDecimal incomes, Integer fromAccountId, BigDecimal outgoings, Integer toAccountId) {
-        String sql = "INSERT INTO transactions (cash_deposited, cash_withdrawn, transactions_incomes, from_account_id, transactions_outgoings, to_account_id) " +
-                     "VALUES (:deposited, :withdrawn, :incomes, :fromAccountId, :outgoings, :toAccountId)";
+        String sql = "INSERT INTO transactions (cash_deposited, cash_withdrawn, transfers_in, from_account_id, transfers_out, to_account_id) " +
+                     "VALUES (:deposited, :withdrawn, :transfersIn, :fromAccountId, :transfersOut, :toAccountId)";
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("deposited", deposited);
         paramMap.put("withdrawn", withdrawn);
-        paramMap.put("incomes", incomes);
+        paramMap.put("transfersIn", incomes);
         paramMap.put("fromAccountId", fromAccountId);
-        paramMap.put("outgoings", outgoings);
+        paramMap.put("transfersOut", outgoings);
         paramMap.put("toAccountId", toAccountId);
         jdbcTemplate.update(sql, paramMap);
     }
+
+//    public void accountHistory(String AccountNr) {
+//        String sql = "SELECT account_balance FROM accounts WHERE account_nr = :accountNumber";
+//        Map<String, Object> paramMap = new HashMap<>();
+//        paramMap.put("accountNumber", accountNr);
+//        return jdbcTemplate.queryForObject(sql, paramMap, BigDecimal.class);
+//    }
 
 //    public void accountHistory(BigDecimal amount) {
 //        String sql = "INSERT INTO transactions (cash_deposited) VALUES (:deposited)";

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p><u><b>Leia 2 numbri min väärtus</b></u></p>
+Sisesta number a: <input id="min_a">
+Sisesta number b: <input id="min_b">
+<button id="min_button" type="button">Min</button>
+<u>Nendest kahest numbrist väiksem on:</u> <input id="min_answer" disabled/>
+<br>
+
+<p><u><b>Leia 2 numbri max väärtus</b></u></p>
+Sisesta number a: <input id="max_a">
+Sisesta number b: <input id="max_b">
+<button id="max_button" type="button">Max</button>
+<u>Nendest kahest numbrist suurem on:</u> <input id="max_answer" disabled/>
+<br>
+
+<p><u><b>Leia absoluutarv</b></u></p>
+Sisesta number: <input id="abs_a">
+<button id="abs_button" type="button">Abs</button>
+<u>Selle numbri absoluutarv on:</u> <input id="abs_answer" disabled/>
+<br>
+
+<p><u><b>Kontrolli, kas sisestatud number on paarisarv</b></u></p>
+Sisesta number: <input id="isEven">
+<button id="isEven_button" type="button">Paarisarv?</button>
+<u>Vastus:</u> <input id="isEven_answer" disabled/>
+<i>true = paarisarv; false = ei ole paarisarv</i>
+<br>
+
+<p><u><b>Leia 3 numbri min või max väärtus</b></u></p>
+Sisesta number a: <input id="a">
+Sisesta number b: <input id="b">
+Sisesta number c: <input id="c">
+<button id="min2_button" type="button">Min</button>
+<button id="max2_button" type="button">Max</button><br>
+<u>Nendest kolmest numbrist väikseim on:</u> <input id="min2_answer" disabled/>
+<u>Nendest kolmest numbrist suurim on:</u> <input id="max2_answer" disabled/>
+<br>
+
+<script>
+    let min_a = document.getElementById("min_a");
+    let min_b = document.getElementById("min_b");
+    let min_answer = document.getElementById("min_answer");
+    function pressButtonFunction1() {
+        if(min_a.value <= min_b.value) {
+            min_answer.value = min_a.value;
+        } else {
+            min_answer.value = min_b.value;
+        }
+    }
+    let element1 = document.getElementById("min_button");
+    element1.addEventListener("click", pressButtonFunction1)
+
+
+    let max_a = document.getElementById("max_a");
+    let max_b = document.getElementById("max_b");
+    let max_answer = document.getElementById("max_answer");
+    function pressButtonFunction2() {
+        if(max_a.value >= max_b.value) {
+            max_answer.value = max_a.value;
+        } else {
+            max_answer.value = max_b.value;
+        }
+    }
+    let element2 = document.getElementById("max_button");
+    element2.addEventListener("click", pressButtonFunction2)
+
+
+    let abs_a = document.getElementById("abs_a");
+    let abs_answer = document.getElementById("abs_answer");
+    function pressButtonFunction3() {
+        if(abs_a.value < 0) {
+            abs_answer.value = abs_a.value * -1;
+        } else {
+            abs_answer.value = abs_a.value;
+        }
+    }
+    let element3 = document.getElementById("abs_button");
+    element3.addEventListener("click", pressButtonFunction3)
+
+
+    let isEven = document.getElementById("isEven");
+    let isEven_answer = document.getElementById("isEven_answer");
+    function pressButtonFunction4() {
+        if(isEven % 2) {
+            isEven_answer.value = isEven_answer + " on paarisarv";
+        } else {
+            isEven_answer.value = "See ei ole paarisarv";
+        }
+    }
+    let element4 = document.getElementById("isEven_button");
+    element4.addEventListener("click", pressButtonFunction4)
+
+
+    let min2_a = document.getElementById("a");
+    let min2_b = document.getElementById("b");
+    let min2_c = document.getElementById("c");
+    let min2_answer = document.getElementById("min2_answer");
+    function pressButtonFunction5() {
+        if (min2_a.value <= min2_b.value && min2_a.value <= min2_c.value) {
+            min2_answer.value = min2_a.value;
+        } else if (min2_b.value <= min2_a.value && min2_b.value <= min2_c.value) {
+            min2_answer.value = min2_b.value;
+    } else {
+            min2_answer.value = min2_c.value;
+        }
+    }
+    let element5 = document.getElementById("min2_button");
+    element5.addEventListener("click", pressButtonFunction5)
+
+
+    let max2_a = document.getElementById("a");
+    let max2_b = document.getElementById("b");
+    let max2_c = document.getElementById("c");
+    let max2_answer = document.getElementById("max2_answer");
+    function pressButtonFunction6() {
+        if (max2_a.value >= max2_b.value && max2_a.value >= max2_c.value) {
+            max2_answer.value = max2_a.value;
+        } else if (max2_b.value >= max2_a.value && max2_b.value >= max2_c.value) {
+            max2_answer.value = max2_b.value;
+        } else {
+            max2_answer.value = max2_c.value;
+        }
+    }
+    let element6 = document.getElementById("max2_button");
+    element6.addEventListener("click", pressButtonFunction6)
+</script>
+</body>
+</html>

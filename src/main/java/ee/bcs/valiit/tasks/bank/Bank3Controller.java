@@ -60,4 +60,11 @@ public class Bank3Controller {
                               @RequestParam("amount") BigDecimal amount) {
         bank3Service.transferMoney(fromAccount, toAccount, amount);
     }
+
+//    // http://localhost:8080/bank3/accountHistory?accountNr=EE001
+//    @GetMapping("accountHistory")
+//    public BigDecimal accountHistory(@RequestParam("accountNr") String accountNr) {
+//        return bank3Service.accountHistory(accountNr);
+//    }
+
 }
