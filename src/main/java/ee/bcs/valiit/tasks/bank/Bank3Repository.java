@@ -25,6 +25,13 @@ public class Bank3Repository {
         jdbcTemplate.update(sql, paramMap);
     }
 
+    public String findPassWordByUserName(String username) {
+        String sql = "SELECT password FROM customers WHERE username=:username";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("username", username);
+        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
+    }
+
     public void createAccount(String accountNr, Integer owner) {
         String sql = "INSERT INTO accounts (account_nr, customer_id, account_balance) VALUES (:accountNumber, :owner, :balance)";
         Map<String, Object> paramMap = new HashMap();
@@ -35,10 +42,10 @@ public class Bank3Repository {
     }
 
     public void getAccountId(Integer accountId) {
-        String sql = "INSERT INTO transactions (account_id) VALUES (:accountId)";
-        Map<String, Object> paramMap3 = new HashMap();
-        paramMap3.put("accountId", accountId);
-        jdbcTemplate.update(sql, paramMap3);
+        String sql = "SELECT id FROM accounts WHERE customer_Id=:customerId";
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("accountId", accountId);
+        jdbcTemplate.update(sql, paramMap);
     }
 
     public BigDecimal accountBalance(String accountNr) {
@@ -50,10 +57,10 @@ public class Bank3Repository {
 
     public void transactions(String accountNr, BigDecimal newBalance) {
         String sql = "UPDATE accounts SET account_balance = :balance WHERE account_nr = :accountNumber";
-        Map<String, Object> paramMap2 = new HashMap();
-        paramMap2.put("accountNumber", accountNr);
-        paramMap2.put("balance", newBalance);
-        jdbcTemplate.update(sql, paramMap2);
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("accountNumber", accountNr);
+        paramMap.put("balance", newBalance);
+        jdbcTemplate.update(sql, paramMap);
 
 //        String sql2 = "UPDATE transactions SET from_account_id = :fromAccountId WHERE account_nr = :accountNumber";
 //        Map<String, Object> paramMap3 = new HashMap();

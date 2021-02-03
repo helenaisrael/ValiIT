@@ -72,4 +72,11 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="02/02/2021" author="Helena">
+        <addColumn tableName="customers">
+            <column name="username" type="text"/>
+            <column name="password" type="text"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

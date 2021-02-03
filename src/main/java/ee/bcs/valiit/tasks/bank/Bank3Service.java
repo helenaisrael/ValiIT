@@ -18,6 +18,11 @@ public class Bank3Service {
         bank3Repository.createCustomer(firstName, lastName, birthDate, phone, email);
     }
 
+    public String findPassWordByUserName(String username) {
+        bank3Repository.findPassWordByUserName(username);
+        return findPassWordByUserName(username);
+    }
+
     public void createAccount(String accountNr, Integer owner) {
         bank3Repository.createAccount(accountNr, owner);
     }
@@ -58,8 +63,10 @@ public class Bank3Service {
         bank3Repository.transactions(toAccount, newToAccountBalance); // transferMoney4
     }
 
-//    public BigDecimal accountHistory(@RequestParam("accountNr") String accountNr) {
-//        return bank3Repository.accountHistory(accountNr);
+
+//
+//    public void accountHistory(@RequestParam("accountNr") String accountNr) {
+//        return bank3Repository.accountHistory(deposited, withdrawn, transfersIn, fromAccount, transfersOut, toAccount);
 //    }
 
 }

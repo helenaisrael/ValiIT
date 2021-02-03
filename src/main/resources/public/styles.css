@@ -1,3 +1,35 @@
-body {background-color:#ffab95;}
-h1 {color:lightpink;}
-a {text-decoration: rebeccapurple}
+html {
+    height: 100%
+}
+/*header {*/
+/*    background-color: darkgray*/
+/*}*/
+
+body {
+    background-color: lightgray;
+    /*min-height: 100%;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+}
+
+h1 {
+    color: lightpink;
+}
+
+div {
+    color: black
+}
+
+p {
+    color: black
+}
+
+a {
+    text-decoration: rebeccapurple
+}
+
+/*footer {*/
+/*    background-color: darkgray;*/
+/*    margin-top: auto;*/
+/*}*/
+

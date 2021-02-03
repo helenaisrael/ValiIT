@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>MathUtil</title>
 </head>
 <body>
 <p><u><b>Leia 2 numbri min väärtus</b></u></p>
@@ -87,10 +87,10 @@ Sisesta number c: <input id="c">
     let isEven = document.getElementById("isEven");
     let isEven_answer = document.getElementById("isEven_answer");
     function pressButtonFunction4() {
-        if(isEven % 2) {
-            isEven_answer.value = isEven_answer + " on paarisarv";
+        if(isEven.value % 2) {
+            isEven_answer.value = "Ei ole paarisarv";
         } else {
-            isEven_answer.value = "See ei ole paarisarv";
+            isEven_answer.value = "See on paarisarv";
         }
     }
     let element4 = document.getElementById("isEven_button");

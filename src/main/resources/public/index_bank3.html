@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DB DreamBank</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div style='display: none;'></div>
+<img src="DreamBankLogo.jpg" alt="DreamBank Logo">
+<h2>DreamBank welcomes all dreamers - Dreamers Unite!</h2>
+<h3>May all your customers' dreams come true with DreamBank</h3>
+<h4>Please choose a service</h4>
+<!--    <button id="newCustomer" type="button">A brand new customer</button>-->
+<!--    <button id="existingCustomer" type="button">An existing DreamBank customer</button><br>-->
+<hr>
+<div>
+    <h3>Create a New Customer profile</h3>
+    <p>Please fill in the following data fields:</p>
+    <table cellspacing="8">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td><label>First name:</label></td>
+                        <td><input id="firstName"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Last name:</label></td>
+                        <td><input id="lastName"><br></td>
+                    </tr>
+                    <tr>
+                        <td><label>Birth date:</label></td>
+                        <td><input type="date" id="birthDate"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Mobile:</label></td>
+                        <td><input id="mobile"></td>
+                    </tr>
+                    <tr>
+                        <td><label>E-mail:</label></td>
+                        <td><input type="email" id="email"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+<button id="newCustomerButton" type="button">Submit customer data</button>
+<br>
+<hr>
+<div>
+    <h3>Create a New Bank Account</h3>
+    <table cellspacing="8">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td><label>Account Number:</label></td>
+                        <td><input id="accountNr"><br></td>
+                        <td><i>(must be unique)</i></td>
+                    </tr>
+                    <tr>
+                        <td><label>Account OwnerId:</label></td>
+                        <td><input id="ownerId"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+<button id="newAccountButton" type="button">Create a new account</button>
+<br>
+<hr>
+<h3>View Account Balance</h3>
+<div>
+    <table cellspacing="8">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td><label>Account Number:</label></td>
+                        <td><input id="getAccountBalance"><br></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+<button id="accountBalanceButton" type="button">Get Account Balance</button>
+<br>
+<input id="accountBalanceAnswer" disabled/>
+<br>
+<hr>
+<h3>Deposit Money</h3>
+<div>
+    <table cellspacing="8">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td><label>Account Number:</label></td>
+                        <td><input id="depositAccountNr"><br></td>
+                    </tr>
+                    <tr>
+                        <td><label>Amount to be deposited:</label></td>
+                        <td><input id="depositAmount"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+<button id="depositButton" type="button">Deposit Money</button>
+<br>
+<hr>
+<div>
+    <h3>Withdraw Money</h3>
+    <table cellspacing="8">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td><label>Account Number:</label></td>
+                        <td><input id="withdrawAccountNr"><br></td>
+                    </tr>
+                    <tr>
+                        <td><label>Amount to be withdrawn:</label></td>
+                        <td><input id="withdrawAmount"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+<button id="withdrawButton" type="button">Withdraw Money</button>
+<br>
+<hr>
+<h3>Transfer Money</h3>
+<div>
+    <table cellspacing="8">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td><label>FROM Account Number:</label></td>
+                        <td><input id="fromAccountNr"><br></td>
+                    </tr>
+                    <tr>
+                        <td><label>TO Account Number:</label></td>
+                        <td><input id="toAccountNr"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Amount to be transferred:</label></td>
+                        <td><input id="transferAmount"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+<button id="transferButton" type="button">Transfer Money</button>
+<br>
+</body>
+<footer>
+
+</footer>
+<script>
+    let firstName = document.getElementById("firstName");
+    let lastName = document.getElementById("lastName");
+    let birthDate = document.getElementById("birthDate");
+    let mobile = document.getElementById("mobile");
+    let email = document.getElementById("email");
+    let newCustomerButton = document.getElementById("newCustomerButton")
+
+    function newCustomer() {
+        fetch('/bank3/createCustomer?firstName=' + firstName.value + '&lastName=' + lastName.value + '&birthDate=' + birthDate.value + '&phone=' + mobile.value + '&email=' + email.value,
+            {
+                method: 'POST'
+            })
+            .then(result => result.text())
+            .then(function (result) {
+            })
+    }
+    newCustomerButton.onclick = newCustomer;
+
+
+    let accountNr = document.getElementById("accountNr");
+    let ownerId = document.getElementById("ownerId"); // sulgudes peab olema sama, mis üleval HTMLis!
+    let newAccountButton = document.getElementById("newAccountButton")
+
+    function newAccount() {
+        fetch('/bank3/createAccount?accountNr=' + accountNr.value + '&owner=' + ownerId.value,
+            {
+                method: 'POST'
+            })
+            .then(result => result.text())
+            .then(function (result) {
+            })
+    }
+    newAccountButton.onclick = newAccount;
+
+
+    let getAccountBalance = document.getElementById("accountNr");
+    let accountBalanceButton = document.getElementById("accountBalanceButton")
+    let accountBalanceAnswer = document.getElementById("accountBalanceAnswer")
+
+    function accountBalance() {
+        fetch('/bank3/accountBalance?accountNr=' + getAccountBalance.value)
+            .then(result => result.text())
+            .then(function (result) {
+                console.log(result)
+            })
+    }
+    accountBalanceButton.onclick = accountBalance;
+
+
+    let depositAccountNr = document.getElementById("depositAccountNr");
+    let depositAmount = document.getElementById("depositAmount");
+    let depositButton = document.getElementById("depositButton")
+
+    function depositMoney() {
+        fetch('/bank3/depositMoney?accountNr=' + depositAccountNr.value + "&amount=" + depositAmount.value,
+            {
+                method: 'PUT'
+            })
+            .then(result => result.text())
+            .then(function (result) {
+            })
+    }
+    depositButton.onclick = depositMoney;
+
+
+    let withdrawAccountNr = document.getElementById("withdrawAccountNr");
+    let withdrawAmount = document.getElementById("withdrawAmount");
+    let withdrawButton = document.getElementById("withdrawButton")
+
+    function withdrawMoney() {
+        fetch('/bank3/withdrawMoney?accountNr=' + withdrawAccountNr.value + "&amount=" + withdrawAmount.value,
+            {
+                method: 'PUT'
+            })
+            .then(result => result.text())
+            .then(function (result) {
+            })
+    }
+    withdrawButton.onclick = withdrawMoney;
+
+
+    let fromAccountNr = document.getElementById("fromAccountNr");
+    let toAccountNr = document.getElementById("toAccountNr");
+    let transferAmount = document.getElementById("transferAmount");
+    let transferButton = document.getElementById("transferButton")
+
+    function transferMoney() {
+        fetch('/bank3/transferMoney?fromAccountNr=' + fromAccountNr.value + 'toAccountNr=' + toAccountNr.value + "&amount=" + transferAmount.value,
+            {
+                method: 'PUT'
+            })
+            .then(result => result.text())
+            .then(function (result) {
+                accountBalance(document.getElementById("fromAccountNr").value);
+                console.log(result);
+                console.log(document.getElementById("toAccountNr").value)
+                accountBalance(document.getElementById("toAccountNr").value);
+            })
+    }
+    transferButton.onclick = transferMoney;
+
+</script>
+</html>

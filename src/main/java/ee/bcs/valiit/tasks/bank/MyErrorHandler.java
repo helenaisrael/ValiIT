@@ -11,6 +11,7 @@ public class MyErrorHandler {
     @ExceptionHandler(BankException.class)
     public ResponseEntity<Object> handleBankException(Exception ex) {
         System.out.println("handle exception here");
+        ex.printStackTrace();
         ErrorResponse response = new ErrorResponse();
         response.setMessage(ex.getMessage());
         return new ResponseEntity<Object>(new ErrorResponse(), new
